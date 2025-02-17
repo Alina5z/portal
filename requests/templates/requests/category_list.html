@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Категории{% endblock %}
+
+{% block content %}
+    <h1>Категории заявок</h1>
+    
+    <div class="categories-list">
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                    <li>{{ category.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Категорий нет</p>
+        {% endif %}
+    </div>
+
+    <h1>Добавить категорию</h1>
+    <form method="post" action="{% url 'category_create' %}">
+        {% csrf_token %}
+        <label for="name">Название категории:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Добавить</button>
+    </form>
+
+{% endblock %}

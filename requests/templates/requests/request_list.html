@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Список заявок{% endblock %}
+
+{% block content %}
+    <div class="row mb-4">
+        <div class="col">
+            <h2>{% if user.is_staff %}Добро пожаловать Администратор!{% else %}Добро пожаловать на городской портал «Сделаем лучше вместе!»{% endif %}</h2><br>
+            <h3>Мы создали городской портал «Сделаем лучше вместе!» для того, чтобы вы могли легко и быстро сообщать о возникших проблемах. Наша цель — сделать город более комфортным и безопасным для всех его жителей.</h3>
+            <h4 class="text-center">Последние решённые проблемы</h4>
+            <div class="col-vo">
+                <p>Количество решённых заявок: 158<span id="resolved-count">{{ resolved_count }}</span></p><br>
+            </div>
+        </div>
+    </div>
+
+    
+    {% if requests %}
+        <div class="row">
+            {% for request in requests %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ request.title }}</h5>
+                            <p class="card-text">
+                                <span class="badge {% if request.status == 'new' %}bg-info{% elif request.status == 'in_progress' %}bg-warning{% elif request.status == 'resolved' %}bg-success{% else %}bg-danger{% endif %}">
+                                    {{ request.get_status_display }}
+                                </span>
+                            </p>
+                            <p class="card-text"><small class="text-muted">Создано: {{ request.created_at|date:"d.m.Y H:i" }}</small></p>
+                            <p class="card-text"><small class="text-muted">Категория: {{ request.category.name }}</small></p>
+
+                        </div>
+                        <a href="{% url 'request_detail' request.pk %}" class="btn btn-outline-primary btn-sm">Изменить</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle">Заявок нет</i>
+        </div>
+    {% endif %}
+{% endblock %}
+<script>
+function updateResolvedCount() {
+    fetch('/get_resolved_count/')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('resolved-count').innerText = data.resolved_count; // Обновляем текст элемента
+        })
+        .catch(error => console.error('Ошибка при получении данных:', error));
+}
+
+// Обновляйте каждые 5 секунд (5000 мс)
+setInterval(updateResolvedCount, 5000);
+</script>

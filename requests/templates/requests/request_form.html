@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}{% if form.instance.pk %}Редактировать заявку{% else %}Отправить заявку{% endif %}{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h2 mb-0">{% if form.instance.pk %}Редактировать заявку{% else %}Отправить заявку{% endif %}</h1>
+        </div>
+        <div class="card-body">  <!-- Основное тело карточки -->
+    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>  <!-- Форма с валидацией -->
+        {% csrf_token %}  <!-- Защита от CSRF -->
+
+        {% if form.non_field_errors %}  <!-- Проверка на наличие ошибок формы -->
+            <div class="alert alert-danger">  <!-- Ошибки формы -->
+                {% for error in form.non_field_errors %}
+                    {{ error }}  <!-- Вывод ошибок -->
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Поле для заголовка -->
+        <div class="mb-3">
+            {{ form.title.label_tag }}  <!-- Метка поля заголовка -->
+            {% render_field form.title class="form-control" %}  <!-- Поле ввода заголовка -->
+            {% if form.title.errors %}
+                <div class="invalid-feedback d-block">  <!-- Ошибки заголовка -->
+                    {% for error in form.title.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для категории -->
+        <div class="mb-3">
+            {{ form.category.label_tag }}  <!-- Метка поля категории -->
+            {% render_field form.category class="form-select" %}  <!-- Выпадающий список категорий -->
+            {% if form.category.errors %}
+                <div class="invalid-feedback d-block">  <!-- Ошибки категории -->
+                    {% for error in form.category.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для описания -->
+        <div class="mb-3">
+            {{ form.description.label_tag }}  <!-- Метка поля описания -->
+            {% render_field form.description class="form-control" rows="5" %}  <!-- Поле ввода описания -->
+            {% if form.description.errors %}
+                <div class="invalid-feedback d-block">  <!-- Ошибки описания -->
+                    {% for error in form.description.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Поле для загрузки фото -->
+        <div class="mb-3">
+            {{ form.photo.label_tag }}  <!-- Метка поля фото -->
+            {% render_field form.photo class="form-control" %}  <!-- Поле для загрузки файла -->
+            {% if form.photo.errors %}
+                <div class="invalid-feedback d-block">  <!-- Ошибки фото -->
+                    {% for error in form.photo.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Кнопка отправки формы -->
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">
+                {% if form.instance.pk %}Сохранить изменения{% else %}Отправить заявку{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+
+    </div>
+{% endblock %}

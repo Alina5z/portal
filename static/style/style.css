@@ -1,0 +1,155 @@
+body {
+    padding-top: 5px;
+    background-color: #ffffff;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand {
+    padding-bottom: var(--bs-navbar-brand-padding-y);
+    color: var(--bs-navbar-brand-color);
+    white-space: nowrap;
+    font-size: 39px;
+    margin-right: 50px;
+}
+
+.justify-content-left {
+    margin: 0px;
+}
+
+.card {
+    width: 420px;
+    margin-bottom: 10px;
+    --bs-card-cap-bg: rgba(var(#c4a683), 0.03);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+    margin-left: 0px;
+}
+
+h4 {
+    font-size: 36px;
+    margin-top: 80px;
+    text-align: center;
+}
+.center-text h1 {
+    text-align: center;
+}
+
+.col-vo {
+    font-size: 20px;
+    color: red;
+    text-align: center;
+    font-weight: 600;
+}
+
+.col-lg-4 {
+    width: 440px !important;
+}
+
+.card-header {
+    color: #ffffff;
+    font-size: 24px;
+    background-color: #A3855D;
+}
+
+.btn-danger {
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: #A3855D;
+}
+
+.btn-primary {
+    background-color: #A3855D;
+    border: #A3855D;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 210px;
+    height: 53px;
+}
+
+.alert-info {
+    color: inherit;
+}
+
+.alert-danger {
+    width: 370px;
+    background-color: #ff8995;
+}
+
+.row justify-content-center {
+    justify-content: flex-start !important;
+}
+
+.col-lg-4 {
+    flex: 0 0 auto;
+    width: 1000px;
+}
+
+li {
+    font-size: 20px;
+}
+
+dl,
+ol,
+ul {
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-size: 22px;
+}
+
+input {
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: #f5ddbe;
+}
+
+button {
+    height: 40px;
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: #A3855D;
+}
+
+.text-center p {
+    font-size: 22px;
+}
+
+.messages {
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.message.success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #574515;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #ff9aa4;
+}
+
+.bg-yellow {
+    background-color: #55432E;
+    text-align: center;
+    align-items: center;
+}
+
+.text--black {
+    font-size: 24px;
+    color: #ffffff;
+}
